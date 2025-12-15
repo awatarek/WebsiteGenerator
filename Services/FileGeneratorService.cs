@@ -12,13 +12,19 @@ public class FileGeneratorService
             HtmlTemplate.GenerateIndex(config), Encoding.UTF8);
 
         if (config.IncludeCss)
-            File.WriteAllText(Path.Combine(path, "style.css"),
-                "body{font-family:Arial;margin:40px;} nav ul{display:flex;gap:15px;list-style:none;padding:0;}",
-                Encoding.UTF8);
+            File.WriteAllText(
+                Path.Combine(path, "style.css"),
+                CssTemplate.Generate(),
+                Encoding.UTF8
+            );
+
 
         if (config.IncludeJs)
-            File.WriteAllText(Path.Combine(path, "script.js"),
-                "console.log('Strona wygenerowana');", Encoding.UTF8);
+            File.WriteAllText(
+                Path.Combine(path, "script.js"),
+                JsTemplate.Generate(),
+                Encoding.UTF8
+            );
 
         if (config.IncludeRobotsTxt)
             File.WriteAllText(Path.Combine(path, "robots.txt"),
